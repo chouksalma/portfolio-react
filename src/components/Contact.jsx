@@ -105,7 +105,7 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Your Name"
+                  placeholder="Salma Chouk"
                   className="w-full bg-transparent border-none focus:outline-none text-white placeholder-gray-500"
                   required
                 />

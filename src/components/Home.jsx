@@ -44,7 +44,7 @@ const Home = () => {
               </span>
               <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
                 Hi, I'm{' '}
-                <span className="text-gradient animate-shine">Your Name</span>
+                <span className="text-gradient animate-shine">Salma chouk</span>
               </h1>
               <h2 className="text-3xl md:text-5xl font-bold text-gray-400 leading-tight">
                 Full Stack Developer
