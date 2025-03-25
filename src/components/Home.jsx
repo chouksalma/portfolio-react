@@ -1,79 +1,70 @@
 import React from 'react';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
 
 const Home = () => {
-  const socialLinks = [
-    {
-      id: 1,
-      child: "LinkedIn",
-      href: 'https://linkedin.com',
-      style: 'bg-[#0077B5] hover:bg-[#0077B5]/90'
-    },
-    {
-      id: 2,
-      child: "GitHub",
-      href: 'https://github.com',
-      style: 'bg-[#333333] hover:bg-[#333333]/90'
-    },
-    {
-      id: 3,
-      child: "Email",
-      href: 'mailto:your.email@example.com',
-      style: 'bg-gradient-to-r from-[#EA4335] to-[#FBBC05] hover:opacity-90'
-    },
-  ];
-
   return (
-    <div name="home" className="relative min-h-screen w-full bg-[#0a192f] overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0a192f] via-[#112240] to-[#0a192f]"></div>
-        <div className="absolute inset-0">
-          <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-500/10 blur-[100px] -top-32 -left-32 animate-float"></div>
-          <div className="absolute w-[500px] h-[500px] rounded-full bg-purple-500/10 blur-[100px] -bottom-32 -right-32 animate-float animation-delay-400"></div>
-          <div className="absolute w-[800px] h-[800px] rounded-full bg-cyan-500/10 blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-float animation-delay-800"></div>
-        </div>
-      </div>
+    <section id="home" className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black/90"></div>
+      <div className="absolute inset-0 grid-pattern opacity-5"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#EFB54F_0%,transparent_50%)] opacity-5"></div>
+      
+      {/* Animated Orbs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#EFB54F]/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#EBA40B]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
-          <div className="space-y-small">
-            <div className="space-y-tiny animate-slide-up">
-              <span className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-500 text-sm font-medium">
-                Welcome to my Portfolio
-              </span>
-              <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
-                Hi, I'm{' '}
-                <span className="text-gradient animate-shine">Salma chouk</span>
+          <div className="space-y-10 animate-slide-up">
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="px-4 py-2 bg-[#EFB54F]/10 text-[#EFB54F] rounded-full text-sm font-medium tracking-wider uppercase">
+                  Welcome to my portfolio
+                </span>
+              </div>
+              <h1 className="text-6xl sm:text-7xl font-bold leading-tight">
+                <span className="text-[#EFB54F]">Hello, I'm</span>
+                <br />
+                <span className="text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
+                  Salma
+                </span>
               </h1>
-              <h2 className="text-3xl md:text-5xl font-bold text-gray-400 leading-tight">
-                Full Stack Developer
+              <h2 className="text-3xl sm:text-4xl font-semibold text-white/80">
+                Frontend Developer & UI/UX Designer
               </h2>
+              <p className="text-white/60 text-lg max-w-xl leading-relaxed">
+                I create beautiful and functional web experiences that make a difference.
+                Passionate about crafting intuitive interfaces and seamless user experiences.
+              </p>
             </div>
 
-            <p className="text-gray-400 text-lg max-w-xl leading-relaxed animate-slide-up animation-delay-200">
-              Crafting exceptional digital experiences through innovative web solutions. 
-              Specialized in building modern, scalable applications with cutting-edge technologies.
-            </p>
-
-            <div className="flex flex-wrap gap-4 animate-slide-up animation-delay-400">
-              <button className="modern-button group">
-                <span className="relative z-10">View Projects</span>
+            <div className="flex flex-wrap gap-4">
+              <button className="group px-8 py-4 bg-[#EFB54F] text-black font-semibold rounded-lg hover:bg-[#EBA40B] transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#EFB54F]/20">
+                <span className="flex items-center gap-2">
+                  View Projects
+                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
               </button>
-              <button className="modern-button bg-transparent border-2 border-cyan-500 hover:bg-cyan-500/10">
-                <span className="relative z-10">Download CV</span>
+              <button className="group px-8 py-4 border-2 border-[#EFB54F] text-[#EFB54F] font-semibold rounded-lg hover:bg-[#EFB54F] hover:text-black transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#EFB54F]/20">
+                <span className="flex items-center gap-2">
+                  Contact Me
+                  <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
               </button>
             </div>
 
-            {/* Tech Stack */}
-            <div className="animate-slide-up animation-delay-600">
-              <h3 className="text-gray-400 text-sm font-medium mb-3">Tech Stack</h3>
+            <div className="space-y-4">
+              <h3 className="text-white/80 font-semibold text-lg">Tech Stack</h3>
               <div className="flex flex-wrap gap-3">
-                {['React', 'Node.js', 'TypeScript', 'Tailwind', 'MongoDB'].map((tech, index) => (
+                {['React', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'].map((tech, index) => (
                   <span
                     key={tech}
-                    className="modern-card px-4 py-2 text-sm text-gray-300 animate-scale-in"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="px-4 py-2 bg-[#EFB54F]/10 text-[#EFB54F] rounded-full text-sm font-medium hover:bg-[#EFB54F]/20 transition-colors duration-300"
                   >
                     {tech}
                   </span>
@@ -82,58 +73,53 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Content - 3D Card */}
-          <div className="relative hidden lg:block animate-float">
-            <div className="modern-card aspect-square">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 animate-border-glow"></div>
-              <div className="relative h-full flex flex-col justify-between z-10">
-                <div className="space-y-4">
-                  <div className="h-2 w-24 bg-cyan-500/20 rounded-full"></div>
-                  <div className="h-2 w-32 bg-cyan-500/20 rounded-full"></div>
-                  <div className="h-2 w-40 bg-cyan-500/20 rounded-full"></div>
-                </div>
-                <div className="flex justify-center items-center flex-1">
-                  <div className="w-40 h-40 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 p-1 animate-border-glow">
-                    <div className="w-full h-full rounded-full bg-[#0a192f] flex items-center justify-center">
-                      <span className="text-2xl text-white">Your Photo</span>
-                    </div>
+          {/* Right Content */}
+          <div className="relative animate-slide-up" style={{ animationDelay: '200ms' }}>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#EFB54F] to-[#EBA40B] rounded-3xl blur-3xl opacity-20"></div>
+            <div className="relative bg-black/80 backdrop-blur-xl rounded-3xl p-8 transform hover:scale-[1.02] transition-transform duration-300">
+              <div className="relative">
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -left-4 w-8 h-8 bg-[#EFB54F] rounded-full opacity-20"></div>
+                <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-[#EBA40B] rounded-full opacity-20"></div>
+                
+                {/* Profile Image */}
+                <div className="aspect-square rounded-full bg-[#EFB54F]/10 flex items-center justify-center mb-8 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#EFB54F] to-[#EBA40B] opacity-20"></div>
+                  <div className="w-40 h-40 rounded-full bg-[#EFB54F] flex items-center justify-center text-5xl font-bold text-black relative z-10 transform hover:scale-105 transition-transform duration-300">
+                    SC
                   </div>
                 </div>
-                <div className="space-y-4">
-                  <div className="h-2 w-36 bg-cyan-500/20 rounded-full"></div>
-                  <div className="h-2 w-28 bg-cyan-500/20 rounded-full"></div>
+
+                {/* Social Links */}
+                <div className="space-y-8">
+                  <div className="flex items-center justify-center space-x-6">
+                    <a href="#" className="group">
+                      <FaGithub className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
+                    </a>
+                    <a href="#" className="group">
+                      <FaLinkedin className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
+                    </a>
+                    <a href="#" className="group">
+                      <FaTwitter className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
+                    </a>
+                    <a href="#" className="group">
+                      <FaEnvelope className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
+                    </a>
+                  </div>
+
+                  {/* Scroll Indicator */}
+                  <div className="flex items-center justify-center">
+                    <div className="w-6 h-10 border-2 border-[#EFB54F] rounded-full p-1">
+                      <div className="w-1.5 h-1.5 bg-[#EFB54F] rounded-full animate-bounce"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Social Links */}
-      <div className="hidden lg:flex flex-col fixed top-[35%] left-0 space-y-tiny">
-        {socialLinks.map(({ id, child, href, style }, index) => (
-          <a
-            key={id}
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            className={`glass-morphism flex items-center w-40 h-14 px-4 ml-[-100px] hover:ml-[-10px] duration-300 rounded-r-lg ${style} animate-slide-up`}
-            style={{ animationDelay: `${index * 200}ms` }}
-          >
-            <span className="flex justify-between items-center w-full text-white font-medium">
-              {child}
-            </span>
-          </a>
-        ))}
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-float">
-        <div className="w-[35px] h-[64px] rounded-3xl border-2 border-cyan-500/20 flex justify-center items-start p-2 glass-morphism">
-          <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 animate-float"></div>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 };
 

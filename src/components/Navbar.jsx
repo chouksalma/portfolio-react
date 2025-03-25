@@ -30,7 +30,7 @@ const Navbar = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Hauteur de la navbar
+      const offset = 80;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -53,16 +53,16 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'} bg-[#0a192f]/95`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'} bg-black`}>
       {/* Backdrop blur effect with new background */}
       <div className={`absolute inset-0 transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-b from-[#0a192f] via-[#0a192f]/95 to-[#0a192f]/90"></div>
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `linear-gradient(to right, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-                           linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px)`,
+        <div className="absolute inset-0 backdrop-blur-xl bg-gradient-to-b from-black via-black/95 to-black"></div>
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(to right, rgba(239, 181, 79, 0.1) 1px, transparent 1px),
+                           linear-gradient(to bottom, rgba(239, 181, 79, 0.1) 1px, transparent 1px)`,
           backgroundSize: '20px 20px'
         }}></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-purple-500/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#EFB54F]/5 via-[#EBA40B]/5 to-[#EFB54F]/5"></div>
       </div>
 
       {/* Navbar content */}
@@ -70,12 +70,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <button onClick={() => scrollToSection('home')} className="group flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 p-0.5 overflow-hidden">
-              <div className="w-full h-full rounded-[7px] bg-[#0a192f] flex items-center justify-center transform group-hover:scale-95 transition-transform duration-300">
-                <span className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">SC</span>
+            <div className="w-10 h-10 rounded-lg bg-[#EFB54F] p-0.5 overflow-hidden">
+              <div className="w-full h-full rounded-[7px] bg-black flex items-center justify-center transform group-hover:scale-95 transition-transform duration-300">
+                <span className="text-xl font-bold text-[#EFB54F]">SC</span>
               </div>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-blue-500 text-transparent bg-clip-text group-hover:from-blue-500 group-hover:to-cyan-500 transition-all duration-300">
+            <span className="text-2xl font-bold text-[#EFB54F] group-hover:text-[#EBA40B] transition-all duration-300">
               Salma
             </span>
           </button>
@@ -88,15 +88,15 @@ const Navbar = () => {
                 onClick={() => scrollToSection(link.href)}
                 className={`relative px-4 py-2 group ${
                   activeSection === link.href
-                    ? 'text-cyan-500'
-                    : 'text-gray-300 hover:text-white'
+                    ? 'text-[#EFB54F]'
+                    : 'text-white hover:text-[#EFB54F]'
                 }`}
               >
                 {/* Hover effect */}
-                <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-y-1 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 group-hover:translate-y-0 opacity-0 group-hover:opacity-100"></span>
+                <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform translate-y-1 rounded-lg bg-[#EFB54F]/20 group-hover:translate-y-0 opacity-0 group-hover:opacity-100"></span>
                 
                 {/* Active indicator */}
-                <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-300 ${
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-[#EFB54F] transition-all duration-300 ${
                   activeSection === link.href ? 'w-full' : 'w-0 group-hover:w-full'
                 }`}></span>
 
@@ -111,8 +111,8 @@ const Navbar = () => {
             {/* Contact Button */}
             <button
               onClick={() => scrollToSection('contact')}
-              className={`px-6 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-medium transform hover:translate-y-[-2px] transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 ${
-                activeSection === 'contact' ? 'ring-2 ring-cyan-500/50' : ''
+              className={`px-6 py-2 rounded-lg bg-[#EFB54F] text-black font-medium transform hover:translate-y-[-2px] transition-all duration-300 hover:shadow-lg hover:shadow-[#EFB54F]/25 ${
+                activeSection === 'contact' ? 'ring-2 ring-[#EFB54F]/50' : ''
               }`}
             >
               <span className="flex items-center">
@@ -129,11 +129,11 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden relative w-10 h-10 focus:outline-none group"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg transform transition-transform duration-300 group-hover:scale-105"></div>
+            <div className="absolute inset-0 bg-[#EFB54F]/20 rounded-lg transform transition-transform duration-300 group-hover:scale-105"></div>
             <div className="relative flex flex-col items-center justify-center space-y-1.5">
-              <span className={`block w-5 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 transform transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-              <span className={`block w-5 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`block w-5 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 transform transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+              <span className={`block w-5 h-0.5 bg-[#EFB54F] transform transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`block w-5 h-0.5 bg-[#EFB54F] transition-opacity duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`block w-5 h-0.5 bg-[#EFB54F] transform transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
             </div>
           </button>
         </div>
@@ -147,8 +147,8 @@ const Navbar = () => {
                 onClick={() => scrollToSection(link.href)}
                 className={`block w-full text-left px-3 py-2 rounded-lg text-base font-medium transition-all duration-300 ${
                   activeSection === link.href
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white'
-                    : 'text-gray-300 hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-blue-500/10 hover:text-white'
+                    ? 'bg-[#EFB54F] text-black'
+                    : 'text-white hover:bg-[#EFB54F]/10 hover:text-[#EFB54F]'
                 }`}
               >
                 <span className="flex items-center">
