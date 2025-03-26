@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import CustomCursor from './CustomCursor';
 
 const Home = () => {
   return (
@@ -80,18 +81,45 @@ const Home = () => {
 
           {/* Right Content */}
           <div className="relative animate-slide-up" style={{ animationDelay: '200ms' }}>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#EFB54F] to-[#EBA40B] rounded-3xl blur-3xl opacity-20"></div>
             <div className="relative bg-black/80 backdrop-blur-xl rounded-3xl p-8 transform hover:scale-[1.02] transition-transform duration-300">
               <div className="relative">
-                {/* Decorative Elements */}
-                <div className="absolute -top-4 -left-4 w-8 h-8 bg-[#EFB54F] rounded-full opacity-20"></div>
-                <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-[#EBA40B] rounded-full opacity-20"></div>
-                
-                {/* Profile Image */}
-                <div className="aspect-square rounded-full bg-[#EFB54F]/10 flex items-center justify-center mb-8 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#EFB54F] to-[#EBA40B] opacity-20"></div>
-                  <div className="w-40 h-40 rounded-full bg-[#EFB54F] flex items-center justify-center text-5xl font-bold text-black relative z-10 transform hover:scale-105 transition-transform duration-300">
-                    SC
+                {/* Profile Image Container avec effet 3D */}
+                <div className="relative w-full max-w-md mx-auto perspective-1000">
+                  <div className="relative group transform-3d hover:rotate-y-12 duration-1000">
+                    {/* Cercles décoratifs 3D */}
+                    <div className="absolute inset-0 rounded-full border-4 border-[#F1AD00]/20 animate-spin-slow"></div>
+                    <div className="absolute inset-0 rounded-full border-4 border-[#F1AD00]/10 animate-spin-slow-reverse"></div>
+                    
+                    {/* Container principal de l'image */}
+                    <div className="relative rounded-full overflow-hidden aspect-square transform-style-3d">
+                      {/* Image principale */}
+                      <div className="relative z-10">
+                        <img
+                          src="./profil.png"
+                          alt="Salma Chouk"
+                          className="w-full h-full object-cover rounded-full shadow-3d transform hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+
+                      {/* Effets de brillance 3D */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#F1AD00]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-bl from-[#F1AD00]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"></div>
+                    </div>
+
+                    {/* Particules dorées */}
+                    <div className="absolute inset-0 particles-container">
+                      {[...Array(12)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="particle absolute w-2 h-2 bg-[#F1AD00] rounded-full"
+                          style={{
+                            top: `${Math.random() * 100}%`,
+                            left: `${Math.random() * 100}%`,
+                            animation: `float ${2 + Math.random() * 3}s infinite ease-in-out ${Math.random() * 2}s`
+                          }}
+                        ></div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 

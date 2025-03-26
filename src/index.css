@@ -276,3 +276,16 @@ a:hover ~ .cursor-outline {
   backdrop-filter: blur(2px);
   background: rgba(241, 173, 0, 0.1);
 }
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
