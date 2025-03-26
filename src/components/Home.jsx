@@ -31,11 +31,15 @@ const Home = () => {
                 </span>
               </h1>
               <h2 className="text-3xl sm:text-4xl font-semibold text-white/80">
-                Frontend Developer & UI/UX Designer
+                full stack  Developer & wordpress Developer
               </h2>
               <p className="text-white/60 text-lg max-w-xl leading-relaxed">
-                I create beautiful and functional web experiences that make a difference.
-                Passionate about crafting intuitive interfaces and seamless user experiences.
+              I am a full-stack Developer skilled in Technologies, such as React js, 
+               HTML, CSS, and JavaScript, and php ,bootstrap,java,wordpress creating 
+               interactive web experiences and application web. I'm passionate about blending
+                design aesthetics with functionality.
+
+
               </p>
             </div>
 
@@ -61,7 +65,8 @@ const Home = () => {
             <div className="space-y-4">
               <h3 className="text-white/80 font-semibold text-lg">Tech Stack</h3>
               <div className="flex flex-wrap gap-3">
-                {['React', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS'].map((tech, index) => (
+                {['React js', 'material ui','ES6  ','JavaScript','HTML5', 'CSS3', ' Php', ' mysql','Git','Github',
+                'sql','Bootstrap','wordpress','shopify'].map((tech, index) => (
                   <span
                     key={tech}
                     className="px-4 py-2 bg-[#EFB54F]/10 text-[#EFB54F] rounded-full text-sm font-medium hover:bg-[#EFB54F]/20 transition-colors duration-300"

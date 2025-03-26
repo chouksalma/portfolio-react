@@ -6,42 +6,38 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "A full-stack e-commerce platform built with React, Node.js, and MongoDB. Features include user authentication, product management, shopping cart, and payment integration.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80",
+      title: "digitronics",
+      description: "A full-stack e-commerce platform built wordpress",
+      image: "/digitronics.jpg",
       technologies: ["React", "Node.js", "MongoDB", "Express"],
-      link: "#"
+      link: "https://digitronics.ma/"
     },
     {
-      title: "Task Management App",
-      description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80",
-      technologies: ["React", "Firebase", "Tailwind CSS"],
+      title: "Adm jawaz",
+      description: "A website public whit react js material ui for front-end and node js for backend.",
+      image: "/adm.jpg",
+      technologies: ["React", "Material ui", "Node js", "Api"],
       link: "#"
     },
     {
       title: "Portfolio Website",
-      description: "A modern, responsive portfolio website showcasing projects, skills, and experience with smooth animations and interactive elements.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80",
-      technologies: ["React", "Tailwind CSS", "Framer Motion"],
-      link: "#"
+      description: "A modern, responsive portfolio website whit html css js shopify. ",
+      image: "/portfolio.png",
+      technologies: ["Html", " Css", "js","shopify"],
+      link: "https://salmachouk.xyz/"
     },
-    // Projets supplémentaires qui seront affichés après le clic sur "Voir plus"
     {
-      title: "Social Media Dashboard",
-      description: "Real-time social media analytics dashboard with interactive charts and data visualization.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80",
+      title: "Bricolink",
+      description: " A website e-commerce whit wordpress.",
+      image: "/pricolink.png",
       technologies: ["React", "D3.js", "Socket.io"],
-      link: "#"
-    },
-    {
-      title: "AI Image Generator",
-      description: "An AI-powered image generation application using deep learning models.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2088&q=80",
-      technologies: ["Python", "TensorFlow", "React"],
-      link: "#"
+      link: "https://bricolink.ma/"
     }
   ];
+
+  const handleDownloadCV = () => {
+    window.open('/cv.pdf', '_blank');
+  };
 
   const visibleProjects = showAll ? projects : projects.slice(0, 3);
 
@@ -50,15 +46,35 @@ const Portfolio = () => {
       <CustomCursor />
       <section id="portfolio" className="min-h-screen bg-black py-24 px-4 sm:px-6 cursor-default">
         <div className="max-w-7xl mx-auto">
-          {/* En-tête */}
+          {/* En-tête avec bouton CV */}
           <div className="text-center mb-20">
             <h2 className="text-6xl font-bold mb-6">
               <span className="text-[#F1AD00]">Mes Projets</span>
             </h2>
             <div className="w-24 h-1 bg-[#F1AD00] mx-auto mb-8"></div>
-            <p className="text-white/80 text-xl max-w-2xl mx-auto">
+            <p className="text-white/80 text-xl max-w-2xl mx-auto mb-8">
               Découvrez mes réalisations professionnelles
             </p>
+            {/* Bouton Télécharger CV */}
+            <button
+              onClick={handleDownloadCV}
+              className="inline-flex items-center gap-2 bg-[#F1AD00] text-black px-6 py-3 rounded-full font-semibold hover:bg-[#F1AD00]/90 transition-all duration-300"
+            >
+              <span>Télécharger CV</span>
+              <svg 
+                className="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
+                />
+              </svg>
+            </button>
           </div>
 
           {/* Grille des projets */}

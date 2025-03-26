@@ -10,16 +10,18 @@ const About = () => {
       title: "Frontend Development",
       description: "Creating responsive and interactive web applications using modern technologies and best practices.",
       icon: <FaCode className="w-6 h-6" />,
-      skills: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
+      skills: ["React", "material ui ", "Es6 ",
+         "JavaScript", "HTML", "CSS", ],
       gradient: "from-[#EBA40B] to-[#EEB141]"
     },
     {
-      title: "UI/UX Design",
-      description: "Designing intuitive and beautiful user interfaces that enhance user experience and engagement.",
-      icon: <FaPalette className="w-6 h-6" />,
-      skills: ["Figma", "Adobe XD", "User Research", "Wireframing", "Prototyping"],
+      title: "Backend Development",
+      description: "Creating efficient backend systems using PHP, MySQL, Oracle, and APIs. Focused on server-side logic, data management, and security. Ensuring smooth communication between frontend and backend.",
+      icon: <FaCode className="w-6 h-6" />,
+      skills: ["PHP", "MySQL", "Oracle", "API"],
       gradient: "from-[#EBA40B] to-[#EEB141]"
-    },
+    }
+,    
     {
       title: "Team Collaboration",
       description: "Working effectively in cross-functional teams to deliver high-quality products on time.",
@@ -69,9 +71,9 @@ const About = () => {
             <span className="text-white">As a Developer</span>
           </h2>
           <p className="text-white/60 text-xl max-w-3xl mx-auto leading-relaxed">
-            I'm passionate about creating beautiful and functional web experiences that make a difference.
-            With a strong foundation in frontend development and UI/UX design, I bring ideas to life.
-          </p>
+          Hello there! I'm salma, a full-stack Developer. My academic journey has allowed me to dive deep into Web-Development, and I'm incredibly passionate about leveraging technology to solve real-world problems. Being a student in today's dynamic digital era, I've had opportunities to work on exciting projects, some of which you can explore right here on my portfolio.
+
+</p>
         </div>
 
         {/* Tabs */}
@@ -190,16 +192,7 @@ const About = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="mt-16 text-center animate-slide-up">
-          <button className="group px-10 py-5 bg-gradient-to-r from-[#EBA40B] to-[#EEB141] text-black font-semibold rounded-xl hover:shadow-lg hover:shadow-[#EBA40B]/20 transition-all duration-300 transform hover:scale-105">
-            <span className="flex items-center gap-3 justify-center text-lg">
-              Download Resume
-              <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-            </span>
-          </button>
-        </div>
+     
       </div>
     </section>
   );

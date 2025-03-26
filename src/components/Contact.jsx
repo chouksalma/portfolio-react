@@ -64,7 +64,8 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="text-white/80 font-medium">Email</h4>
-                      <p className="text-white/60">your.email@example.com</p>
+                      <p className="text-white/60">chouk.salma4@gmail.com
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -82,7 +83,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="text-white/80 font-medium">GitHub</h4>
-                      <p className="text-white/60">github.com/yourusername</p>
+                      <p className="text-white/60">https://github.com/chouksalma</p>
                     </div>
                   </div>
                 </div>
@@ -95,7 +96,7 @@ const Contact = () => {
               <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl p-8">
                 <h3 className="text-2xl font-semibold text-white mb-6">Follow Me</h3>
                 <div className="flex space-x-6">
-                  <a href="#" className="text-white/60 hover:text-[#EFB54F] transition-colors duration-300">
+                  <a href="https://github.com/chouksalma" className="text-white/60 hover:text-[#EFB54F] transition-colors duration-300">
                     <FaGithub className="w-8 h-8" />
                   </a>
                   <a href="#" className="text-white/60 hover:text-[#EFB54F] transition-colors duration-300">
