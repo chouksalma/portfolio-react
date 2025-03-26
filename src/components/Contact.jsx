@@ -1,24 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const form = useRef();
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState(null);
 
-  const handleSubmit = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-  };
+    setIsSending(true);
+    setStatus(null);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    emailjs.sendForm(
+      'service_pogg00g', // Collez votre Service ID ici
+      'template_pe0mly7', // Collez votre Template ID ici
+      form.current,
+      '6_5XEafKmVhqtmA8v' // Collez votre Public Key ici
+    )
+      .then((result) => {
+        setStatus({ 
+          type: 'success', 
+          message: 'Message envoyé avec succès! Nous vous répondrons bientôt.' 
+        });
+        form.current.reset();
+      })
+      .catch((error) => {
+        setStatus({ 
+          type: 'error', 
+          message: 'Une erreur est survenue. Veuillez réessayer.' 
+        });
+        console.error('EmailJS Error:', error);
+      })
+      .finally(() => {
+        setIsSending(false);
+      });
   };
 
   return (
@@ -97,58 +113,91 @@ const Contact = () => {
           <div className="relative group animate-slide-up" style={{ animationDelay: '200ms' }}>
             <div className="absolute inset-0 bg-gradient-to-r from-[#EFB54F] to-[#EBA40B] rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
             <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-white/80 font-medium mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#EFB54F] transition-colors duration-300"
-                    placeholder="Your name"
-                    required
-                  />
+              <form 
+                ref={form} 
+                onSubmit={sendEmail}
+                className="space-y-6"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Nom */}
+                  <div>
+                    <label className="block text-[#F1AD00] mb-2" htmlFor="user_name">
+                      Nom
+                    </label>
+                    <input
+                      type="text"
+                      name="user_name"
+                      id="user_name"
+                      required
+                      className="w-full bg-black border-2 border-[#F1AD00]/20 rounded-lg px-4 py-3 text-white focus:border-[#F1AD00] transition-colors duration-300"
+                      placeholder="Votre nom"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label className="block text-[#F1AD00] mb-2" htmlFor="user_email">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="user_email"
+                      id="user_email"
+                      required
+                      className="w-full bg-black border-2 border-[#F1AD00]/20 rounded-lg px-4 py-3 text-white focus:border-[#F1AD00] transition-colors duration-300"
+                      placeholder="votre@email.com"
+                    />
+                  </div>
                 </div>
+
+                {/* Message */}
                 <div>
-                  <label htmlFor="email" className="block text-white/80 font-medium mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#EFB54F] transition-colors duration-300"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-white/80 font-medium mb-2">
+                  <label className="block text-[#F1AD00] mb-2" htmlFor="message">
                     Message
                   </label>
                   <textarea
-                    id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows="4"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:outline-none focus:border-[#EFB54F] transition-colors duration-300"
-                    placeholder="Your message"
+                    id="message"
                     required
+                    rows="6"
+                    className="w-full bg-black border-2 border-[#F1AD00]/20 rounded-lg px-4 py-3 text-white focus:border-[#F1AD00] transition-colors duration-300"
+                    placeholder="Votre message..."
                   ></textarea>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full px-8 py-3 bg-[#EFB54F] text-black font-semibold rounded-lg hover:bg-[#EBA40B] transition-colors duration-300"
-                >
-                  Send Message
-                </button>
+
+                {/* Bouton d'envoi */}
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    disabled={isSending}
+                    className="group relative inline-flex items-center gap-2 bg-[#F1AD00] text-black px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:bg-[#F1AD00]/90 disabled:opacity-50"
+                  >
+                    {isSending ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Envoi en cours...
+                      </span>
+                    ) : (
+                      <span>Envoyer le message</span>
+                    )}
+                  </button>
+                </div>
+
+                {/* Message de statut */}
+                {status && (
+                  <div 
+                    className={`text-center mt-4 p-4 rounded-lg ${
+                      status.type === 'success' 
+                        ? 'bg-green-500/10 text-green-500' 
+                        : 'bg-red-500/10 text-red-500'
+                    }`}
+                  >
+                    {status.message}
+                  </div>
+                )}
               </form>
             </div>
           </div>
