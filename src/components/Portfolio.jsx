@@ -8,35 +8,35 @@ const Portfolio = () => {
     {
       title: "digitronics",
       description: "A full-stack e-commerce platform built wordpress",
-      image: "/digitronics.jpg",
+      image: process.env.PUBLIC_URL + '/digitronics.jpg',
       technologies: ["React", "Node.js", "MongoDB", "Express"],
       link: "https://digitronics.ma/"
     },
     {
       title: "Adm jawaz",
       description: "A website public whit react js material ui for front-end and node js for backend.",
-      image: "/adm.jpg",
+      image: process.env.PUBLIC_URL + '/adm.jpg',
       technologies: ["React", "Material ui", "Node js", "Api"],
       link: "#"
     },
     {
       title: "Portfolio Website",
       description: "A modern, responsive portfolio website whit html css js shopify. ",
-      image: "/portfolio.png",
+      image: process.env.PUBLIC_URL + '/portfolio.png',
       technologies: ["Html", " Css", "js","shopify"],
       link: "https://salmachouk.xyz/"
     },
     {
       title: "Bricolink",
       description: " A website e-commerce whit wordpress.",
-      image: "/pricolink.png",
+      image: process.env.PUBLIC_URL + '/pricolink.png',
       technologies: ["React", "D3.js", "Socket.io"],
       link: "https://bricolink.ma/"
     }
   ];
 
   const handleDownloadCV = () => {
-    window.open('/cv.pdf', '_blank');
+    window.open(process.env.PUBLIC_URL + '/cv.pdf', '_blank');
   };
 
   const visibleProjects = showAll ? projects : projects.slice(0, 3);
