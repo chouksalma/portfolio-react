@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import CustomCursor from './CustomCursor';
 
 const Portfolio = () => {
@@ -41,13 +42,53 @@ const Portfolio = () => {
 
   const visibleProjects = showAll ? projects : projects.slice(0, 3);
 
+  // Animations
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      }
+    }
+  };
+
+  const projectVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 50,
+      rotateX: -30
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        type: "spring",
+        bounce: 0.4,
+        duration: 0.8
+      }
+    }
+  };
+
   return (
     <>
       <CustomCursor />
-      <section id="portfolio" className="min-h-screen bg-black py-24 px-4 sm:px-6 cursor-default">
+      <motion.section
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        id="portfolio"
+        className="min-h-screen bg-[#020617] py-24 px-4 sm:px-6 cursor-default"
+      >
         <div className="max-w-7xl mx-auto">
-          {/* En-tête avec bouton CV */}
-          <div className="text-center mb-20">
+          {/* En-tête avec animation */}
+          <motion.div
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-20"
+          >
             <h2 className="text-6xl font-bold mb-6">
               <span className="text-[#F1AD00]">Mes Projets</span>
             </h2>
@@ -55,95 +96,126 @@ const Portfolio = () => {
             <p className="text-white/80 text-xl max-w-2xl mx-auto mb-8">
               Découvrez mes réalisations professionnelles
             </p>
-            {/* Bouton Télécharger CV */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={handleDownloadCV}
               className="inline-flex items-center gap-2 bg-[#F1AD00] text-black px-6 py-3 rounded-full font-semibold hover:bg-[#F1AD00]/90 transition-all duration-300"
             >
               <span>Télécharger CV</span>
-              <svg 
-                className="w-5 h-5" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" 
-                />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
-          {/* Grille des projets */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Grille des projets modifiée */}
+          <motion.div
+            variants={containerVariants}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {visibleProjects.map((project, index) => (
-              <div 
+              <motion.div
                 key={index}
-                className="group bg-black border-2 border-[#F1AD00]/20 rounded-xl overflow-hidden hover:border-[#F1AD00] transition-all duration-500 transform hover:-translate-y-2"
+                variants={projectVariants}
+                className="group relative"
+                style={{
+                  perspective: '1000px',
+                  transformStyle: 'preserve-3d',
+                }}
               >
-                {/* Image avec overlay */}
-                <div className="relative h-48 overflow-hidden cursor-pointer">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70"></div>
-                  {/* Cercle au survol */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 bg-[#F1AD00] rounded-full flex items-center justify-center transform scale-0 group-hover:scale-100 transition-transform duration-500">
-                      <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </div>
+                <div
+                  className="relative bg-[#0A0A0A] rounded-2xl overflow-hidden transition-all duration-500"
+                  style={{
+                    transform: 'translateZ(0)',
+                    transformStyle: 'preserve-3d',
+                  }}
+                >
+                  {/* Image Container */}
+                  <div className="relative aspect-video overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
 
-                {/* Contenu */}
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#F1AD00] transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-white/70 text-sm mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
+                  {/* Contenu */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-white mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-4">
+                      {project.description}
+                    </p>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech, idx) => (
-                      <span
-                        key={idx}
-                        className="px-3 py-1 text-xs bg-[#F1AD00]/10 text-[#F1AD00] border border-[#F1AD00]/20 rounded-full"
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 text-xs bg-white/5 text-white/80 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.open(project.link, '_blank')}
+                      className="inline-flex items-center gap-2 bg-[#F1AD00] text-black px-6 py-2 rounded-full font-semibold hover:bg-[#F1AD00]/90 transition-all duration-300"
+                    >
+                      <span>Visit Project</span>
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
                       >
-                        {tech}
-                      </span>
-                    ))}
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        />
+                      </svg>
+                    </motion.button>
                   </div>
 
-                  {/* Bouton Voir projet avec nouveau style */}
-                  <a
-                    href={project.link}
-                    className="group/btn inline-flex items-center gap-3 text-[#F1AD00] hover:text-white transition-colors duration-300"
-                  >
-                    <span>Voir le projet</span>
-                    <div className="w-8 h-8 rounded-full border-2 border-[#F1AD00] flex items-center justify-center group-hover/btn:bg-[#F1AD00] group-hover/btn:border-[#F1AD00] transition-all duration-300">
-                      <svg className="w-4 h-4 transform group-hover/btn:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </div>
-                  </a>
+                  {/* Effet 3D au hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: 'linear-gradient(to right bottom, rgba(255,255,255,0.1), transparent)',
+                      transform: 'translateZ(2px)',
+                    }}
+                  />
                 </div>
-              </div>
-            ))}
-          </div>
 
-          {/* Bouton Voir plus avec nouveau style */}
+                {/* Effet d'ombre */}
+                <div
+                  className="absolute -inset-x-2 -inset-y-2 z-[-1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    background: 'radial-gradient(circle at center, rgba(0,0,0,0.4), transparent 70%)',
+                    filter: 'blur(20px)',
+                  }}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Bouton Voir plus avec animation */}
           {!showAll && projects.length > 3 && (
-            <div className="text-center mt-16">
-              <button
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-center mt-16"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setShowAll(true)}
                 className="group relative inline-flex items-center gap-3 bg-[#F1AD00] text-black px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:bg-[#F1AD00]/90"
               >
@@ -153,11 +225,35 @@ const Portfolio = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </div>
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
+          )}
+
+          {/* Ajouter le bouton "Voir moins" */}
+          {showAll && projects.length > 3 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-center mt-16"
+            >
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setShowAll(false)}
+                className="group relative inline-flex items-center gap-3 bg-[#F1AD00] text-black px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:bg-[#F1AD00]/90"
+              >
+                <span>Voir moins</span>
+                <div className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center">
+                  <svg className="w-5 h-5 transform group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                  </svg>
+                </div>
+              </motion.button>
+            </motion.div>
           )}
         </div>
-      </section>
+      </motion.section>
     </>
   );
 };

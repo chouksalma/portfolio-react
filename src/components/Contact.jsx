@@ -1,210 +1,173 @@
-import React, { useState, useRef } from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 const Contact = () => {
-  const form = useRef();
-  const [isSending, setIsSending] = useState(false);
-  const [status, setStatus] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setIsSending(true);
-    setStatus(null);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
 
-    emailjs.sendForm(
-      'service_pogg00g', // Collez votre Service ID ici
-      'template_pe0mly7', // Collez votre Template ID ici
-      form.current,
-      '6_5XEafKmVhqtmA8v' // Collez votre Public Key ici
-    )
-      .then((result) => {
-        setStatus({ 
-          type: 'success', 
-          message: 'Message envoyé avec succès! Nous vous répondrons bientôt.' 
-        });
-        form.current.reset();
-      })
-      .catch((error) => {
-        setStatus({ 
-          type: 'error', 
-          message: 'Une erreur est survenue. Veuillez réessayer.' 
-        });
-        console.error('EmailJS Error:', error);
-      })
-      .finally(() => {
-        setIsSending(false);
-      });
-  };
+    return () => clearTimeout(timer);
+  }, []);
+
+  const contactInfo = [
+    {
+      icon: <FaEnvelope className="w-6 h-6" />,
+      title: "Email",
+      value: "contact@example.com",
+      link: "mailto:contact@example.com"
+    },
+    {
+      icon: <FaPhone className="w-6 h-6" />,
+      title: "Phone",
+      value: "+212 6XX-XXXXXX",
+      link: "tel:+212600000000"
+    },
+    {
+      icon: <FaMapMarkerAlt className="w-6 h-6" />,
+      title: "Location",
+      value: "Maroc",
+      link: "#"
+    }
+  ];
 
   return (
-    <section id="contact" className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-black">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="text-[#EFB54F]">Get in Touch</span>
-          </h2>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto">
-            Have a question or want to work together? Feel free to reach out!
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8 animate-slide-up">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#EFB54F] to-[#EBA40B] rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl p-8">
-                <h3 className="text-2xl font-semibold text-white mb-6">Contact Information</h3>
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-[#EFB54F]/10 flex items-center justify-center">
-                      <FaEnvelope className="w-6 h-6 text-[#EFB54F]" />
-                    </div>
-                    <div>
-                      <h4 className="text-white/80 font-medium">Email</h4>
-                      <p className="text-white/60">chouk.salma4@gmail.com
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-[#EFB54F]/10 flex items-center justify-center">
-                      <FaLinkedin className="w-6 h-6 text-[#EFB54F]" />
-                    </div>
-                    <div>
-                      <h4 className="text-white/80 font-medium">LinkedIn</h4>
-                      <p className="text-white/60">linkedin.com/in/yourprofile</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-lg bg-[#EFB54F]/10 flex items-center justify-center">
-                      <FaGithub className="w-6 h-6 text-[#EFB54F]" />
-                    </div>
-                    <div>
-                      <h4 className="text-white/80 font-medium">GitHub</h4>
-                      <p className="text-white/60">https://github.com/chouksalma</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#EFB54F] to-[#EBA40B] rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl p-8">
-                <h3 className="text-2xl font-semibold text-white mb-6">Follow Me</h3>
-                <div className="flex space-x-6">
-                  <a href="https://github.com/chouksalma" className="text-white/60 hover:text-[#EFB54F] transition-colors duration-300">
-                    <FaGithub className="w-8 h-8" />
-                  </a>
-                  <a href="#" className="text-white/60 hover:text-[#EFB54F] transition-colors duration-300">
-                    <FaLinkedin className="w-8 h-8" />
-                  </a>
-                  <a href="#" className="text-white/60 hover:text-[#EFB54F] transition-colors duration-300">
-                    <FaTwitter className="w-8 h-8" />
-                  </a>
-                </div>
-              </div>
-            </div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          id="contact"
+          className="relative min-h-screen bg-[#020617] py-24 px-4 sm:px-6 overflow-hidden"
+        >
+          {/* Fond avec points turquoise */}
+          <div className="absolute inset-0 z-0">
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  radial-gradient(circle at center, #00ffd5 1px, transparent 1px),
+                  radial-gradient(circle at center, #00ffd5 1px, transparent 1px)
+                `,
+                backgroundSize: '30px 30px',
+                backgroundPosition: '0 0, 15px 15px',
+                opacity: 0.15,
+              }}
+            />
+            
+            {/* Effet de lueur centrale */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: 'radial-gradient(circle at 50% 50%, rgba(0, 255, 213, 0.1) 0%, transparent 60%)',
+              }}
+            />
           </div>
 
-          {/* Contact Form */}
-          <div className="relative group animate-slide-up" style={{ animationDelay: '200ms' }}>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#EFB54F] to-[#EBA40B] rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
-            <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl p-8">
-              <form 
-                ref={form} 
-                onSubmit={sendEmail}
-                className="space-y-6"
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-7xl mx-auto relative z-10"
+          >
+            {/* Section Header */}
+            <div className="text-center mb-20">
+              <div className="inline-block mb-6">
+                <span className="px-6 py-3 bg-[#EBA40B]/10 text-[#EBA40B] rounded-full text-sm font-medium tracking-wider uppercase border border-[#EBA40B]/20">
+                  Contact Me
+                </span>
+              </div>
+              <h2 className="text-5xl sm:text-6xl font-bold mb-8">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#EBA40B] to-[#EEB141]">
+                  Get in Touch
+                </span>
+              </h2>
+              <p className="text-white/60 text-xl max-w-3xl mx-auto leading-relaxed">
+                Feel free to reach out to me for any questions or opportunities!
+              </p>
+            </div>
+
+            {/* Contact Form and Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-black/40 backdrop-blur-xl rounded-2xl p-8 border border-white/5"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Nom */}
+                <form className="space-y-6">
                   <div>
-                    <label className="block text-[#F1AD00] mb-2" htmlFor="user_name">
-                      Nom
-                    </label>
+                    <label className="block text-white mb-2">Name</label>
                     <input
                       type="text"
-                      name="user_name"
-                      id="user_name"
-                      required
-                      className="w-full bg-black border-2 border-[#F1AD00]/20 rounded-lg px-4 py-3 text-white focus:border-[#F1AD00] transition-colors duration-300"
-                      placeholder="Votre nom"
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#EBA40B] focus:ring-2 focus:ring-[#EBA40B]/50 transition-all duration-300"
+                      placeholder="Your name"
                     />
                   </div>
-
-                  {/* Email */}
                   <div>
-                    <label className="block text-[#F1AD00] mb-2" htmlFor="user_email">
-                      Email
-                    </label>
+                    <label className="block text-white mb-2">Email</label>
                     <input
                       type="email"
-                      name="user_email"
-                      id="user_email"
-                      required
-                      className="w-full bg-black border-2 border-[#F1AD00]/20 rounded-lg px-4 py-3 text-white focus:border-[#F1AD00] transition-colors duration-300"
-                      placeholder="votre@email.com"
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#EBA40B] focus:ring-2 focus:ring-[#EBA40B]/50 transition-all duration-300"
+                      placeholder="Your email"
                     />
                   </div>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label className="block text-[#F1AD00] mb-2" htmlFor="message">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    required
-                    rows="6"
-                    className="w-full bg-black border-2 border-[#F1AD00]/20 rounded-lg px-4 py-3 text-white focus:border-[#F1AD00] transition-colors duration-300"
-                    placeholder="Votre message..."
-                  ></textarea>
-                </div>
-
-                {/* Bouton d'envoi */}
-                <div className="text-center">
+                  <div>
+                    <label className="block text-white mb-2">Message</label>
+                    <textarea
+                      className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-[#EBA40B] focus:ring-2 focus:ring-[#EBA40B]/50 transition-all duration-300 h-32"
+                      placeholder="Your message"
+                    ></textarea>
+                  </div>
                   <button
                     type="submit"
-                    disabled={isSending}
-                    className="group relative inline-flex items-center gap-2 bg-[#F1AD00] text-black px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:bg-[#F1AD00]/90 disabled:opacity-50"
+                    className="w-full py-4 bg-gradient-to-r from-[#EBA40B] to-[#EEB141] text-black rounded-xl font-semibold hover:shadow-lg hover:shadow-[#EBA40B]/50 transition-all duration-300"
                   >
-                    {isSending ? (
-                      <span className="flex items-center gap-2">
-                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        Envoi en cours...
-                      </span>
-                    ) : (
-                      <span>Envoyer le message</span>
-                    )}
+                    Send Message
                   </button>
-                </div>
+                </form>
+              </motion.div>
 
-                {/* Message de statut */}
-                {status && (
-                  <div 
-                    className={`text-center mt-4 p-4 rounded-lg ${
-                      status.type === 'success' 
-                        ? 'bg-green-500/10 text-green-500' 
-                        : 'bg-red-500/10 text-red-500'
-                    }`}
+              {/* Contact Info */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="space-y-8"
+              >
+                {contactInfo.map((info, index) => (
+                  <motion.a
+                    key={info.title}
+                    href={info.link}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + index * 0.1 }}
+                    className="group block"
                   >
-                    {status.message}
-                  </div>
-                )}
-              </form>
+                    <div className="bg-black/40 backdrop-blur-xl rounded-2xl p-6 border border-white/5 hover:border-[#EBA40B]/20 transition-all duration-300">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#EBA40B] to-[#EEB141] flex items-center justify-center text-black">
+                          {info.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-white/60 text-sm">{info.title}</h3>
+                          <p className="text-white text-lg font-medium">{info.value}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.a>
+                ))}
+              </motion.div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          </motion.div>
+        </motion.section>
+      )}
+    </AnimatePresence>
   );
 };
 

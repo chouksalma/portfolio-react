@@ -1,8 +1,84 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
 import CustomCursor from './CustomCursor';
+import { motion } from 'framer-motion';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simuler un temps de chargement de 2 secondes
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
+
+  // Animation pour le texte mot par mot
+  const welcomeText = "Welcome to my portfolio".split(" ");
+  const nameText = "Hello, I'm Salma".split(" ");
+  const roleText = "full stack Developer & wordpress Developer".split(" ");
+  const descriptionText = "I am a full-stack Developer skilled in Technologies, such as React js, HTML, CSS, and JavaScript, and php, bootstrap, java, wordpress creating interactive web experiences and application web. I'm passionate about blending design aesthetics with functionality.".split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.04 * i },
+    }),
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      x: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          {/* Logo animé ou initiales */}
+          <div className="relative w-24 h-24 mx-auto mb-8">
+            <div className="absolute inset-0 border-4 border-[#F1AD00]/20 rounded-full animate-spin-slow"></div>
+            <div className="absolute inset-0 border-t-4 border-[#F1AD00] rounded-full animate-spin"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-[#F1AD00] text-2xl font-bold">SC</span>
+            </div>
+          </div>
+          
+          {/* Texte de chargement */}
+          <div className="text-[#F1AD00] space-y-2">
+            <p className="text-lg font-medium">Loading</p>
+            <div className="flex items-center justify-center gap-1">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={i}
+                  className="w-2 h-2 bg-[#F1AD00] rounded-full animate-bounce"
+                  style={{ animationDelay: `${i * 0.2}s` }}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <section id="home" className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
       {/* Background Elements */}
@@ -19,29 +95,79 @@ const Home = () => {
           {/* Left Content */}
           <div className="space-y-10 animate-slide-up">
             <div className="space-y-6">
-              <div className="inline-block">
-                <span className="px-4 py-2 bg-[#EFB54F]/10 text-[#EFB54F] rounded-full text-sm font-medium tracking-wider uppercase">
-                  Welcome to my portfolio
-                </span>
-              </div>
-              <h1 className="text-6xl sm:text-7xl font-bold leading-tight">
-                <span className="text-[#EFB54F]">Hello, I'm</span>
-                <br />
-                <span className="text-white bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
-                  Salma
-                </span>
-              </h1>
-              <h2 className="text-3xl sm:text-4xl font-semibold text-white/80">
-                full stack  Developer & wordpress Developer
-              </h2>
-              <p className="text-white/60 text-lg max-w-xl leading-relaxed">
-              I am a full-stack Developer skilled in Technologies, such as React js, 
-               HTML, CSS, and JavaScript, and php ,bootstrap,java,wordpress creating 
-               interactive web experiences and application web. I'm passionate about blending
-                design aesthetics with functionality.
+              {/* Welcome Text */}
+              <motion.div
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                className="inline-block"
+              >
+                <div className="px-4 py-2 bg-[#EFB54F]/10 rounded-full">
+                  {welcomeText.map((word, idx) => (
+                    <motion.span
+                      key={idx}
+                      variants={child}
+                      className="text-[#EFB54F] text-sm font-medium tracking-wider uppercase inline-block mr-2"
+                    >
+                      {word}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
 
+              {/* Name Text */}
+              <motion.h1
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                className="text-6xl sm:text-7xl font-bold leading-tight"
+              >
+                {nameText.map((word, idx) => (
+                  <motion.span
+                    key={idx}
+                    variants={child}
+                    className="inline-block mr-4 text-[#EFB54F]"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.h1>
 
-              </p>
+              {/* Role Text */}
+              <motion.h2
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                className="text-3xl sm:text-4xl font-semibold text-white/80"
+              >
+                {roleText.map((word, idx) => (
+                  <motion.span
+                    key={idx}
+                    variants={child}
+                    className="inline-block mr-2"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.h2>
+
+              {/* Description Text */}
+              <motion.p
+                variants={container}
+                initial="hidden"
+                animate="visible"
+                className="text-white/60 text-lg max-w-xl leading-relaxed"
+              >
+                {descriptionText.map((word, idx) => (
+                  <motion.span
+                    key={idx}
+                    variants={child}
+                    className="inline-block mr-2"
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </motion.p>
             </div>
 
             <div className="flex flex-wrap gap-4">

@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCode, FaPalette, FaUsers, FaRocket, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('experience');
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const experiences = [
     {
@@ -45,89 +55,153 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="min-h-screen pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black/90"></div>
-      <div className="absolute inset-0 grid-pattern opacity-5"></div>
-      
-      {/* Animated Gradient Orbs */}
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-[#EBA40B]/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-[#EEB141]/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#EBA40B]/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
-
-      <div className="max-w-7xl mx-auto relative">
-        {/* Section Header */}
-        <div className="text-center mb-20 animate-slide-up">
-          <div className="inline-block mb-6">
-            <span className="px-6 py-3 bg-[#EBA40B]/10 text-[#EBA40B] rounded-full text-sm font-medium tracking-wider uppercase border border-[#EBA40B]/20">
-              About Me
-            </span>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          id="about"
+          className="relative min-h-screen bg-[#020617] py-24 px-4 sm:px-6 overflow-hidden"
+        >
+          {/* Fond avec points turquoise */}
+          <div className="absolute inset-0 z-0">
+            <div 
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  radial-gradient(circle at center, #00ffd5 1px, transparent 1px),
+                  radial-gradient(circle at center, #00ffd5 1px, transparent 1px)
+                `,
+                backgroundSize: '30px 30px',
+                backgroundPosition: '0 0, 15px 15px',
+                opacity: 0.15,
+              }}
+            />
+            
+            {/* Effet de lueur centrale */}
+            <div 
+              className="absolute inset-0"
+              style={{
+                background: 'radial-gradient(circle at 50% 50%, rgba(0, 255, 213, 0.1) 0%, transparent 60%)',
+              }}
+            />
           </div>
-          <h2 className="text-5xl sm:text-6xl font-bold mb-8">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#EBA40B] to-[#EEB141]">
-              My Journey
-            </span>
-            <br />
-            <span className="text-white">As a Developer</span>
-          </h2>
-          <p className="text-white/60 text-xl max-w-3xl mx-auto leading-relaxed">
-          Hello there! I'm salma, a full-stack Developer. My academic journey has allowed me to dive deep into Web-Development, and I'm incredibly passionate about leveraging technology to solve real-world problems. Being a student in today's dynamic digital era, I've had opportunities to work on exciting projects, some of which you can explore right here on my portfolio.
+
+          {/* Contenu existant - ajoutez seulement la classe z-10 relative pour le placer au-dessus du fond */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-7xl mx-auto relative z-10"
+          >
+            {/* Section Header */}
+            <div className="text-center mb-20 animate-slide-up">
+              <div className="inline-block mb-6">
+                <span className="px-6 py-3 bg-[#EBA40B]/10 text-[#EBA40B] rounded-full text-sm font-medium tracking-wider uppercase border border-[#EBA40B]/20">
+                  About Me
+                </span>
+              </div>
+              <h2 className="text-5xl sm:text-6xl font-bold mb-8">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#EBA40B] to-[#EEB141]">
+                  My Journey
+                </span>
+                <br />
+                <span className="text-white">As a Developer</span>
+              </h2>
+              <p className="text-white/60 text-xl max-w-3xl mx-auto leading-relaxed">
+              Hello there! I'm salma, a full-stack Developer. My academic journey has allowed me to dive deep into Web-Development, and I'm incredibly passionate about leveraging technology to solve real-world problems. Being a student in today's dynamic digital era, I've had opportunities to work on exciting projects, some of which you can explore right here on my portfolio.
 
 </p>
-        </div>
+            </div>
 
-        {/* Tabs */}
-        <div className="flex justify-center mb-16 space-x-6">
-          <button
-            onClick={() => setActiveTab('experience')}
-            className={`px-8 py-4 rounded-full font-medium transition-all duration-300 text-lg ${
-              activeTab === 'experience'
-                ? 'bg-gradient-to-r from-[#EBA40B] to-[#EEB141] text-black shadow-lg shadow-[#EBA40B]/20'
-                : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-            }`}
-          >
-            Experience
-          </button>
-          <button
-            onClick={() => setActiveTab('skills')}
-            className={`px-8 py-4 rounded-full font-medium transition-all duration-300 text-lg ${
-              activeTab === 'skills'
-                ? 'bg-gradient-to-r from-[#EBA40B] to-[#EEB141] text-black shadow-lg shadow-[#EBA40B]/20'
-                : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-            }`}
-          >
-            Skills
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="relative">
-          {/* Experience Grid */}
-          <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-opacity duration-500 ${
-            activeTab === 'experience' ? 'opacity-100' : 'opacity-0 absolute'
-          }`}>
-            {experiences.map((exp, index) => (
-              <div
-                key={exp.title}
-                className="group relative animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
+            {/* Tabs */}
+            <div className="flex justify-center mb-16 space-x-6">
+              <button
+                onClick={() => setActiveTab('experience')}
+                className={`px-8 py-4 rounded-full font-medium transition-all duration-300 text-lg ${
+                  activeTab === 'experience'
+                    ? 'bg-gradient-to-r from-[#EBA40B] to-[#EEB141] text-black shadow-lg shadow-[#EBA40B]/20'
+                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                }`}
               >
-                <div className={`absolute inset-0 bg-gradient-to-r ${exp.gradient} rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
-                <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl p-8 transform hover:scale-[1.02] transition-all duration-300 border border-white/5">
-                  <div className="flex items-start space-x-6">
-                    <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${exp.gradient} flex items-center justify-center text-black group-hover:scale-110 transition-transform duration-300`}>
-                      {exp.icon}
+                Experience
+              </button>
+              <button
+                onClick={() => setActiveTab('skills')}
+                className={`px-8 py-4 rounded-full font-medium transition-all duration-300 text-lg ${
+                  activeTab === 'skills'
+                    ? 'bg-gradient-to-r from-[#EBA40B] to-[#EEB141] text-black shadow-lg shadow-[#EBA40B]/20'
+                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                Skills
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="relative">
+              {/* Experience Grid */}
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-opacity duration-500 ${
+                activeTab === 'experience' ? 'opacity-100' : 'opacity-0 absolute'
+              }`}>
+                {experiences.map((exp, index) => (
+                  <div
+                    key={exp.title}
+                    className="group relative animate-slide-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                    onMouseEnter={() => setHoveredCard(index)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-r ${exp.gradient} rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
+                    <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl p-8 transform hover:scale-[1.02] transition-all duration-300 border border-white/5">
+                      <div className="flex items-start space-x-6">
+                        <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${exp.gradient} flex items-center justify-center text-black group-hover:scale-110 transition-transform duration-300`}>
+                          {exp.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-2xl font-semibold text-white mb-3">{exp.title}</h3>
+                          <p className="text-white/60 mb-6 text-lg leading-relaxed">{exp.description}</p>
+                          <div className="flex flex-wrap gap-3">
+                            {exp.skills.map((skill) => (
+                              <span
+                                key={skill}
+                                className="px-4 py-2 bg-[#EBA40B]/10 text-[#EBA40B] rounded-full text-sm font-medium hover:bg-[#EBA40B]/20 transition-colors duration-300"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-semibold text-white mb-3">{exp.title}</h3>
-                      <p className="text-white/60 mb-6 text-lg leading-relaxed">{exp.description}</p>
-                      <div className="flex flex-wrap gap-3">
+                  </div>
+                ))}
+              </div>
+
+              {/* Skills Grid */}
+              <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 transition-opacity duration-500 ${
+                activeTab === 'skills' ? 'opacity-100' : 'opacity-0 absolute'
+              }`}>
+                {experiences.map((exp, index) => (
+                  <div
+                    key={exp.title}
+                    className="group relative animate-slide-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                    onMouseEnter={() => setHoveredCard(index)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-r ${exp.gradient} rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
+                    <div className="relative bg-black/80 backdrop-blur-xl rounded-xl p-6 transform hover:scale-105 transition-all duration-300 border border-white/5">
+                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${exp.gradient} flex items-center justify-center text-black mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                        {exp.icon}
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-4">{exp.title}</h3>
+                      <div className="flex flex-wrap gap-2">
                         {exp.skills.map((skill) => (
                           <span
                             key={skill}
-                            className="px-4 py-2 bg-[#EBA40B]/10 text-[#EBA40B] rounded-full text-sm font-medium hover:bg-[#EBA40B]/20 transition-colors duration-300"
+                            className="px-3 py-1 bg-[#EBA40B]/10 text-[#EBA40B] rounded-full text-sm font-medium hover:bg-[#EBA40B]/20 transition-colors duration-300"
                           >
                             {skill}
                           </span>
@@ -135,66 +209,33 @@ const About = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* Skills Grid */}
-          <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 transition-opacity duration-500 ${
-            activeTab === 'skills' ? 'opacity-100' : 'opacity-0 absolute'
-          }`}>
-            {experiences.map((exp, index) => (
-              <div
-                key={exp.title}
-                className="group relative animate-slide-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-r ${exp.gradient} rounded-xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
-                <div className="relative bg-black/80 backdrop-blur-xl rounded-xl p-6 transform hover:scale-105 transition-all duration-300 border border-white/5">
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${exp.gradient} flex items-center justify-center text-black mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    {exp.icon}
+            {/* Social Links */}
+            <div className="mt-20 flex justify-center space-x-8">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="group relative animate-slide-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#EBA40B] to-[#EEB141] rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                  <div className="relative w-14 h-14 rounded-full bg-[#EBA40B]/10 flex items-center justify-center text-[#EBA40B] group-hover:scale-110 transition-transform duration-300 border border-[#EBA40B]/20">
+                    {social.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-4">{exp.title}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="px-3 py-1 bg-[#EBA40B]/10 text-[#EBA40B] rounded-full text-sm font-medium hover:bg-[#EBA40B]/20 transition-colors duration-300"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+                </a>
+              ))}
+            </div>
 
-        {/* Social Links */}
-        <div className="mt-20 flex justify-center space-x-8">
-          {socialLinks.map((social, index) => (
-            <a
-              key={social.label}
-              href={social.href}
-              className="group relative animate-slide-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#EBA40B] to-[#EEB141] rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-              <div className="relative w-14 h-14 rounded-full bg-[#EBA40B]/10 flex items-center justify-center text-[#EBA40B] group-hover:scale-110 transition-transform duration-300 border border-[#EBA40B]/20">
-                {social.icon}
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {/* Call to Action */}
-     
-      </div>
-    </section>
+            {/* Call to Action */}
+         
+          </motion.div>
+        </motion.section>
+      )}
+    </AnimatePresence>
   );
 };
 
