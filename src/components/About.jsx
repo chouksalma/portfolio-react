@@ -49,9 +49,8 @@ const About = () => {
   ];
 
   const socialLinks = [
-    { icon: <FaGithub />, href: "#", label: "GitHub" },
-    { icon: <FaLinkedin />, href: "#", label: "LinkedIn" },
-    { icon: <FaTwitter />, href: "#", label: "Twitter" }
+    { icon: <FaGithub />, href: "https://github.com/chouksalma", label: "GitHub" },
+    { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/salma-chouk-93b5a935a", label: "LinkedIn" },
   ];
 
   return (

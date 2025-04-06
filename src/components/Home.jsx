@@ -209,68 +209,42 @@ const Home = () => {
           <div className="relative animate-slide-up" style={{ animationDelay: '200ms' }}>
             <div className="relative bg-black/80 backdrop-blur-xl rounded-3xl p-8 transform hover:scale-[1.02] transition-transform duration-300">
               <div className="relative">
-                {/* Profile Image Container avec effet 3D */}
-                <div className="relative w-full max-w-md mx-auto perspective-1000">
-                  <div className="relative group transform-3d hover:rotate-y-12 duration-1000">
-                    {/* Cercles décoratifs 3D */}
-                    <div className="absolute inset-0 rounded-full border-4 border-[#F1AD00]/20 animate-spin-slow"></div>
-                    <div className="absolute inset-0 rounded-full border-4 border-[#F1AD00]/10 animate-spin-slow-reverse"></div>
-                    
+                {/* Profile Image Container simplifié */}
+                <div className="relative w-full max-w-md mx-auto">
+                  <div className="relative group">
                     {/* Container principal de l'image */}
-                    <div className="relative rounded-full overflow-hidden aspect-square transform-style-3d">
+                    <div className="relative rounded-full overflow-hidden aspect-square">
                       {/* Image principale */}
-                      <div className="relative z-10">
-                        <img
-                          src="./profil.png"
-                          alt="Salma Chouk"
-                          className="w-full h-full object-cover rounded-full shadow-3d transform hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-
-                      {/* Effets de brillance 3D */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-[#F1AD00]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      <div className="absolute inset-0 bg-gradient-to-bl from-[#F1AD00]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"></div>
-                    </div>
-
-                    {/* Particules dorées */}
-                    <div className="absolute inset-0 particles-container">
-                      {[...Array(12)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="particle absolute w-2 h-2 bg-[#F1AD00] rounded-full"
-                          style={{
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                            animation: `float ${2 + Math.random() * 3}s infinite ease-in-out ${Math.random() * 2}s`
-                          }}
-                        ></div>
-                      ))}
+                      <img
+                        src="./profil.png"
+                        alt="Salma Chouk"
+                        className="w-full h-full object-cover rounded-full shadow-xl transform hover:scale-105 transition-transform duration-500"
+                      />
+                      
+                      {/* Effet de brillance subtil */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#F1AD00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
                   </div>
                 </div>
 
                 {/* Social Links */}
-                <div className="space-y-8">
+                <div className="mt-8">
                   <div className="flex items-center justify-center space-x-6">
-                    <a href="#" className="group">
+                    <a 
+                      href="https://github.com/chouksalma" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group"
+                    >
                       <FaGithub className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
                     </a>
-                    <a href="#" className="group">
+                    <a href="https://www.linkedin.com/in/salma-chouk-93b5a935a"  target="_blank" 
+                      rel="noopener noreferrer"  className="group">
                       <FaLinkedin className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
                     </a>
-                    <a href="#" className="group">
-                      <FaTwitter className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
-                    </a>
-                    <a href="#" className="group">
-                      <FaEnvelope className="w-7 h-7 text-white/60 hover:text-[#EFB54F] transition-colors duration-300 transform group-hover:scale-110" />
-                    </a>
-                  </div>
-
-                  {/* Scroll Indicator */}
-                  <div className="flex items-center justify-center">
-                    <div className="w-6 h-10 border-2 border-[#EFB54F] rounded-full p-1">
-                      <div className="w-1.5 h-1.5 bg-[#EFB54F] rounded-full animate-bounce"></div>
-                    </div>
+                    
+                    
+                  
                   </div>
                 </div>
               </div>
