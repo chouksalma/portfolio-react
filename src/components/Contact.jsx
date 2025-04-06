@@ -17,19 +17,19 @@ const Contact = () => {
     {
       icon: <FaEnvelope className="w-6 h-6" />,
       title: "Email",
-      value: "contact@example.com",
-      link: "mailto:contact@example.com"
+      value: "chouk.salma4@gmail.com",
+      link: "mailto:chouk.salma4@gmail.com"
     },
     {
       icon: <FaPhone className="w-6 h-6" />,
       title: "Phone",
-      value: "+212 6XX-XXXXXX",
-      link: "tel:+212600000000"
+      value: "+212 713665501",
+      link: "tel:+212713665501"
     },
     {
       icon: <FaMapMarkerAlt className="w-6 h-6" />,
       title: "Location",
-      value: "Maroc",
+      value: "Casablanca Oulfa",
       link: "#"
     }
   ];

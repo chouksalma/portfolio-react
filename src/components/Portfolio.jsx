@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import CustomCursor from './CustomCursor';
 
 const Portfolio = () => {
-  const [showAll, setShowAll] = useState(false);
-
   const projects = [
+    {
+      title: "Bricolink",
+      description: " A website e-commerce whit wordpress.",
+      image: "./pricolink.png",
+      technologies: ["React", "D3.js", "Socket.io"],
+      link: "https://bricolink.ma/"
+    },
     {
       title: "digitronics",
       description: "A full-stack e-commerce platform built wordpress",
       image: "./digitronics.jpg",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
+      technologies: ["wordpress"],
       link: "https://digitronics.ma/"
     },
     {
@@ -26,21 +31,12 @@ const Portfolio = () => {
       image: "./portfolio.png",
       technologies: ["Html", " Css", "js","shopify"],
       link: "https://salmachouk.xyz/"
-    },
-    {
-      title: "Bricolink",
-      description: " A website e-commerce whit wordpress.",
-      image: "./pricolink.png",
-      technologies: ["React", "D3.js", "Socket.io"],
-      link: "https://bricolink.ma/"
     }
   ];
 
   const handleDownloadCV = () => {
     window.open('./cv.pdf', '_blank');
   };
-
-  const visibleProjects = showAll ? projects : projects.slice(0, 3);
 
   // Animations
   const containerVariants = {
@@ -114,9 +110,9 @@ const Portfolio = () => {
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {visibleProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <motion.div
-                key={index}
+                key={project.title}
                 variants={projectVariants}
                 className="group relative"
                 style={{
@@ -204,54 +200,6 @@ const Portfolio = () => {
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Bouton Voir plus avec animation */}
-          {!showAll && projects.length > 3 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-center mt-16"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowAll(true)}
-                className="group relative inline-flex items-center gap-3 bg-[#F1AD00] text-black px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:bg-[#F1AD00]/90"
-              >
-                <span>Voir plus de projets</span>
-                <div className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center">
-                  <svg className="w-5 h-5 transform group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </motion.button>
-            </motion.div>
-          )}
-
-          {/* Ajouter le bouton "Voir moins" */}
-          {showAll && projects.length > 3 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-center mt-16"
-            >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowAll(false)}
-                className="group relative inline-flex items-center gap-3 bg-[#F1AD00] text-black px-8 py-4 rounded-full font-semibold overflow-hidden transition-all duration-300 hover:bg-[#F1AD00]/90"
-              >
-                <span>Voir moins</span>
-                <div className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center">
-                  <svg className="w-5 h-5 transform group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                  </svg>
-                </div>
-              </motion.button>
-            </motion.div>
-          )}
         </div>
       </motion.section>
     </>
