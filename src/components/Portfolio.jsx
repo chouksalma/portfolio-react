@@ -37,8 +37,16 @@ const Portfolio = () => {
       title: "Bricolink",
       description: " A website e-commerce whit wordpress.",
       image: "./pricolink.png",
-      technologies: ["React", "D3.js", "Socket.io"],
+      technologies: ["Wordpress"],
       link: "https://bricolink.ma"
+    },
+ 
+    {
+      title: "Adm jawaz",
+      description: "A website public whit react js material ui for front-end and node js for backend.",
+      image: "./adm.jpg",
+      technologies: ["React", "Material ui", "Node js", "Api"],
+      link: "https://www.adm.co.ma/fr"
     },
     {
       title: "digitronics",
@@ -46,13 +54,6 @@ const Portfolio = () => {
       image: "./digitronics.jpg",
       technologies: ["wordpress"],
       link: "https://digitronics.ma/"
-    },
-    {
-      title: "Adm jawaz",
-      description: "A website public whit react js material ui for front-end and node js for backend.",
-      image: "./adm.jpg",
-      technologies: ["React", "Material ui", "Node js", "Api"],
-      link: "https://www.adm.co.ma/fr"
     },
     {
       title: "Portfolio Website",
