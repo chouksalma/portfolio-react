@@ -81,7 +81,7 @@ const Portfolio = () => {
           >
             <h2 className="text-6xl font-bold mb-6">
               <span className="text-[#F1AD00] inline-block hover:scale-105 transition-transform">
-                Mes Projets
+              My Projects
               </span>
             </h2>
             <motion.div 
@@ -90,7 +90,7 @@ const Portfolio = () => {
               className="w-24 h-1 bg-[#F1AD00] mx-auto mb-8"
             />
             <p className="text-white/80 text-xl max-w-2xl mx-auto mb-8">
-              Découvrez mes réalisations professionnelles
+            Discover my professional achievements
             </p>
             <motion.a
               whileHover={{ scale: 1.05 }}
@@ -100,8 +100,8 @@ const Portfolio = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-[#F1AD00] text-black px-6 py-3 rounded-full font-semibold hover:bg-[#F1AD00]/90 transition-all duration-300"
             >
-              Télécharger CV
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+Download cv
+<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </motion.a>
